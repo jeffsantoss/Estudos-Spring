@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	
+	<context:annotation-config/>
+	<context:property-placeholder location="app.properties"/>
+	
+	<!-- WITHOUT AUTOWIRED  -->
+	
+	<!-- setter injection -->
+	<bean name="customerRepository"
+	 	  class="com.pluralsight.repository.HibernateCustomerRepositoryImpl">
+	 	 <!--  <property name="dbUserName" value="${dbUserName}"></property> -->
+	 	  
+	</bean>
+	 	  
+	 	
+	 	<!--   
+	<bean name="customerService"
+	 	  class="com.pluralsight.service.CustomerServiceImpl">
+	 	  <property name="customerRepository" ref="custRepository"></property>
+	</bean>
+	 -->
+
+	
+	<!-- constructor injection without autowired
+	
+	<bean name="customerService"
+	 	  class="com.pluralsight.service.CustomerServiceImpl">
+	 	  <constructor-arg index="0" ref="custRepository"></constructor-arg>
+	</bean>
+	
+	-->
+	
+	<!-- WITH AUTOWIRED -->
+	
+	<bean name="customerService"
+	 	  class="com.pluralsight.service.CustomerServiceImpl" autowire="constructor" scope="prototype">
+	</bean>
+	 	  
+</beans>
